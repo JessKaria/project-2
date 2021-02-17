@@ -16,7 +16,7 @@ You can view our App on GitHub pages [here](https://jesskaria.github.io/project-
 
 ## Introducing RexFlix!
 
-![here](https://github.com/JessKaria/project-2/blob/main/p2.gif?raw=true)
+![here](https://github.com/JessKaria/project-2/blob/main/src/images/ezgif.com-gif-maker.gif?raw=true)
 
 ## Brief...
 
@@ -45,9 +45,7 @@ You can view our App on GitHub pages [here](https://jesskaria.github.io/project-
 
 ## Wireframes
 
-For us, having an application that ran quickly and was able to offer endless reccomendations to users was critical. We spent a while looking at API's but ended up choosing The Movie Database due to the several endpoints, including the reccomendations and genres. 
-
-![here](https://github.com/JessKaria/project-2/blob/main/WhatsApp%20Image%202021-02-06%20at%2013.43.30.jpeg?raw=true)
+For us, having an application that was able to offer endless reccomendations to users was critical. We spent a while looking at API's but ended up choosing The Movie Database due to the several endpoints, including the reccomendations and genres. 
 
 
 ## Approach
@@ -57,7 +55,7 @@ Once we had picked our API, we mapped out the user journey and then began buildi
 We were focussed on getting out MVP build and ready by the end of day one so we could build add styling and iron out any bugs before submitting.
 
 
-## Features
+## Required Features
 
 - Tiled homepage
 - Movie Bio page to detail title, description rating and imagery
@@ -70,26 +68,66 @@ We were focussed on getting out MVP build and ready by the end of day one so we 
 
 ## Challenges
 
-For me, the biggest challenge was trying to remain focussed on having a working finished product, rather than adding more unnecessary features.
-
-We were extremely conscious of the time, I think this helped us build a really great reccomendations tool.
+For me, the biggest challenge was trying to remain focussed on having a working finished product, rather than adding more unnecessary features. We were extremely conscious of the time, and I think this deadline helped us remain focused on delivering a really great tool for discovering new movies.
 
 ## Wins !
 
-![ultimate-tic-tac-toe](https://github.com/JessKaria/project-2/blob/main/Untitled%20design%20(1).png?raw=true)
-
-The UI of our App is really focused on the large tiled imagery, so we filtered out results that didn't have images.
+For me, building a really great navigation menu was critical, allowing users to browse by genre. I couldn't do this through Bulma's CSS framework so i decided to build my own navigation that rendered conditionally.
 
 ```
-  useEffect(() => {
-    axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=28`)
+const Nav = () => {
+  const [menu, showMenu] = useState(false)
 
-      .then(data => {
-        updateMovies(data.data.results)
-        updatePages(data.data)
-      })
-  }, [])
+  let nav
 
+  if (menu) {
+    nav = <div className="dropdown">
+      <ul className="menu-list">
+        <li className="mob-menu"><Link className="navitem" to={{ pathname: '/project-2/' }}>Home</Link></li>
+        <li className="mob-menu"><Link className="navitem" to={{ pathname: '/project-2/Horror' }}>Horror</Link></li>
+        <li className="mob-menu"><Link className="navitem" to={{ pathname: '/project-2/Comedy' }}>Comedy</Link></li>
+        <li className="mob-menu"><Link className="navitem" to={{ pathname: '/project-2/Family' }}>Family</Link></li>
+        <li className="mob-menu"><Link className="navitem" to={{ pathname: '/project-2/Thriller' }}>Thriller</Link></li>
+        <li className="mob-menu"><Link className="navitem" to={{ pathname: '/project-2/SciFi' }}>Scifi</Link></li>
+        <li className="mob-menu"><Link className="navitem" to={{ pathname: '/project-2/Action' }}>Action</Link></li>
+        <li className="mob-menu"><Link className="navitem" onClick={() => showMenu(!menu)}>Close</Link></li>
+      </ul>
+    </div>
+  }
+
+  return <>
+    <div className="navbar">
+      <Link className="rexHeader" to={{ pathname: '/project-2/' }}>REXFLIX</Link>
+      {nav}
+      <a role="button" className="navbar-burger" onClick={() => showMenu(!menu)}>
+        <img src={DINOMENU} className="dinosmall" height="70px"></img>
+      </a>
+      <div className="navbar-menu">
+        <div className="navbar-start">
+        </div>
+        <div className="navbar-end">
+
+          <div className="navbar-item">
+            <img className="burger" src={DINOMENU} onClick={() => showMenu(!menu)} />
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </>
+}
+
+export default Nav
+
+
+```
+
+
+![here](https://github.com/JessKaria/project-2/blob/main/src/images/Untitled%20design%20(1).png?raw=true)
+
+The UI of our App is really focused on the large tiled imagery, so we made a conscious decision to filter those without images before they rendered.
+
+```
  
   function newPage(pageno) {
     axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pageno}&with_genres=28`)
@@ -115,15 +153,4 @@ Currently some movies don't have reccomendations we should have filtered them to
 
 ## What I learned...
 
-This was my second time building something with React and my first in a paired programming situation and I loved it. 
-
-I learned how to manipulate react router, delviering a multi-page app, how to quickly style UI's with Bulma and how to build a custom conditional navigation bar that was completely mobile responsive.
-
-
-
-
-
-
-
-
-
+This was my second time building something with React and my first in a paired programming situation and I loved it. I learned how to manipulate react router, delvier a multi-page app, how to quickly style UI's with Bulma and how to build a custom conditional navigation bar that was completely mobile responsive.
