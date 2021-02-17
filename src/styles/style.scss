@@ -1,0 +1,148 @@
+@charset "utf-8";
+// Import a Google Font
+// @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap');
+
+// Set your brand colors
+$purple: #f5f5f5;
+$pink: #f5f5f5;
+$brown: #f5f5f5;
+$beige-light: #f5f5f5;
+$darker-red: #f5f5f5;
+
+// Update Bulma's global variables
+$family-sans-serif: 'Bebas Neue', cursive;
+$family-paragraph: 'Montserrat', sans-serif;
+$grey-dark: $brown;
+$light: $beige-light;
+$primary: rgb(248, 248, 248);
+$link: white;
+$widescreen-enabled: false;
+$fullhd-enabled: false;
+
+
+// Update some of Bulma's component variables
+$body-background-color: #0f0f0f;
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+$title-size: 80px;
+
+// Import what you need from Bulma
+@import "../../node_modules/bulma/bulma.sass";
+
+// .hero-body {
+//   background-color: $body-background-color;
+//   background-image: linear-gradient(147deg, #923cb5 0%, #000000 74%);
+//   font-family: 'Bebas Neue', cursive;
+// }
+
+
+.page-nation {
+  border-bottom: solid 1px;
+  padding: 5px;
+  background-color: #ffffff;
+  color: #0f0f0f;
+  font-weight: bold;
+  
+}
+.page-nation a {
+  color: #0f0f0f;
+  padding: 25px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px
+
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+
+.pageclasses {
+  color: rgb(255, 255, 255);
+}
+
+.burger {
+  background-size: 100%;
+  cursor: grabbing;
+}
+
+.navbar-item img {
+  max-height: 3.75rem;
+}
+
+
+.navbar {
+  background-color: #f40000;
+  display: flex;
+  height: 70px;
+  flex-direction: row;
+}
+
+footer {
+  text-align: center;
+  background-color: #f40000;
+}
+
+.mob-menu {
+  font-size: 26px;
+}
+
+
+
+.page {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.column is-one-quarter {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.card-content {
+ padding: 5px;
+ background-color: $body-background-color;
+ border: none;
+}
+
+.card .card-image {
+  height: 250px;
+  width: 190px;
+}
+
+.car {
+  overflow-y:scroll;
+  overflow-x:scroll;
+}
+
+.dropdown {
+  position: fixed;
+  background-color: red;
+  width: 25%;
+  height: 100%;
+  z-index: 50;
+}
+
+
+.tile {
+  color: $darker-red;
+  background-color: $body-background-color;
+}
+
+.text {
+  font-family: 'Montserrat', sans-serif;;
+}
+
+.rexHeader {
+  font-size: 50px;
+  padding-left: 10px;
+}
+
+
