@@ -1,6 +1,3 @@
-# README
-
-
 ### ![GA](https://cloud.githubusercontent.com/assets/40461/8183776/469f976e-1432-11e5-8199-6ac91363302b.png) General Assembly, SEI 
 
 
@@ -47,7 +44,7 @@ You can view our App on GitHub pages [here](https://jesskaria.github.io/project-
 
 - Tiled homepage
 - Movie Bio page to detail title, description rating and imagery
-- Bio page to provide reccomendations
+- Bio page to provide recommendations
 - Discover movies by genre
 - Navigate to dedicated genres via react router
 - Draw slider menu
@@ -56,16 +53,16 @@ You can view our App on GitHub pages [here](https://jesskaria.github.io/project-
 
 ## Wireframes
 
-We knew early on that we wanted to make a Netflix clone, so this helped us both with visualizing the layout and kept us focus on delivering DRY code.
+We knew early on that we wanted to make a Netflix clone, so this helped us both with visualizing the layout and kept us focused on delivering DRY code.
 
 
 ## Approach
 
-Once we had picked our API, we mapped out the user journey and then began building out the functionality. This was my first time pair programming and it was incredibly rewarding, we were able to jump in and solve each others issues but also provide a sounding board to each other when discussing ideas. We were focussed on getting out MVP build and ready by the end of day one so we could build add styling and iron out any bugs before submitting the final project.
+Once we had picked our API, we mapped out the user journey and then began building out the functionality. This was my first time pair programming and it was incredibly rewarding, we were able to jump in and solve each other's issues but also provide a sounding board to each other when discussing ideas. We were focussed on getting our MVP built and ready by the end of day one so we could add styling and iron out any bugs before submitting the final project.
 
-We knew we wanted users to be able to click through on images to a detail page, revealing more information on the movie, including more reccomendations. We did this by mapping over over the results and using the ID's provided to us from the API to create a link and pass state to the seperate detail page. 
+We knew we wanted users to be able to click through on images to a detail page, revealing more information on the movie, including more recommendations. We did this by mapping over the results and using the ID provided to us from the API to create a link and pass state to the separate detail page. 
 
-In addition, the way the API was structured meant the image property did not contain the full URL so we had to concatonate the URL to the path provided in the request.
+In addition, the way the API was structured meant the image property did not contain the full URL so we had to concatenate the URL to the path provided in the request.
 
 Rendering data from API 🎥
 
@@ -109,13 +106,13 @@ Filtering results without imagery 🍿
   
 ```
 
-On our movie detail page, we had to fetch the data related to the specific movie clicked from the homepage, we did this by getting the Id from the params we passed in the URL. we then had two seperate requests using the ID to render the movie title, rating, imagery and bio and the other would fetch reccomended movies based on that particular movie.
+On our movie detail page, we had to fetch the data related to the specific movie clicked from the homepage, we did this by getting the Id from the params we passed in the URL. we then had two separate requests using the ID to render the movie title, rating, imagery and bio and the other would fetch recommended movies based on that particular movie.
 
 ```
 const MoviePage = ({ match }) => {
   const id = match.params.id
   const [movie, updateMovie] = useState({})
-  const [reccomended, updateReccomended] = useState([])
+  const [recommended, updateRecommended] = useState([])
 
   useEffect(() => {
     axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.apikey}&language=en-US`)
@@ -126,7 +123,7 @@ const MoviePage = ({ match }) => {
 
     axios.get(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${process.env.apikey}&language=en-US&page=1`)
       .then(({ data }) => {
-        updateReccomended(data.results)
+        updateRecommended(data.results)
 
       })
   }, [id])
@@ -134,11 +131,11 @@ const MoviePage = ({ match }) => {
 
 ## My role and challenges
 
-After we were both happy with the homepage and movie reccomendations, we split up and started working on different components, I was tasked with building the navigation and fixing some layout issues on the homepage.
+After we were both happy with the homepage and movie recommendations, we split up and started working on different components, I was tasked with building the navigation and fixing some layout issues on the homepage.
 
 ## Wins !
 
-For me, building a really great navigation menu was critical, allowing users to browse by genre. I couldn't do this through Bulma's CSS framework so i decided to build my own navigation that rendered conditionally.
+For me, building a really great navigation menu was critical, allowing users to browse by genre. I couldn't do this through Bulma's CSS framework so I decided to build my own navigation that rendered conditionally.
 
 Custom navigation 🧭
 
@@ -193,14 +190,14 @@ export default Nav
 
 ## Bugs !
 
-Currently some movies don't have reccomendations we should have filtered them too, the first two numbers on pagination are also not working and we are hoping to fix.
+Currently some movies don't have recommendations. We should have filtered them too, the first two numbers on pagination are also not working and we are hoping to fix.
 
 ## Potential future features
 
-- Repilcate the site for TV shows
+- Replicate the site for TV shows
 - Add a search function
 - Integrate a reviews part from another API
 
 ## What I learned...
 
-This was my second time building something with React and my first in a paired programming situation and I loved it. I learned how to manipulate react router, delvier a multi-page app, how to quickly style UI's with Bulma and how to build a custom conditional navigation bar that was completely mobile responsive.
+This was my second time building something with React and my first in a paired programming situation and I loved it. I learned how to manipulate a react router, deliver a multi-page app, how to quickly style UI's with Bulma and how to build a custom conditional navigation bar that was completely mobile responsive.
